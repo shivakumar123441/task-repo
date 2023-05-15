@@ -66,7 +66,7 @@ pipeline:
                       git config --global user.email "shivakumar123441@gmail.com"
 
                       # Stage the modified JSON file
-                      git add shivakumar123441/task-repo/json.file
+                      git add .
 
                       # Commit the changes
                       git commit -m "Update JSON file"
