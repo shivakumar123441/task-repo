@@ -3,31 +3,111 @@ pipeline:
   name: Build task-repo
   orgIdentifier: default
   projectIdentifier: githubtask
-  properties:
-    ci:
-      codebase:
-        build: <+input>
-        connectorRef: account.Github_OAuth_1678082073279
-        repoName: shivakumar123441/task-repo
   stages:
     - stage:
-        identifier: build
-        name: build
+        name: Build
+        identifier: Build
+        type: CI
         spec:
-          cloneCodebase: true
+          cloneCodebase: false
           execution:
             steps:
               - step:
-                  identifier: echo
-                  name: echo
+                  type: GitClone
+                  name: GitClone_1
+                  identifier: GitClone_1
                   spec:
-                    command: echo hello world
-                  timeout: ""
-                  type: Run
+                    connectorRef: account.Github_OAuth_1678082073279
+                    repoName: task-repo
+                    build:
+                      type: branch
+                      spec:
+                        branch: main
           platform:
-            arch: Amd64
             os: Linux
+            arch: Amd64
           runtime:
-            spec: {}
             type: Cloud
-        type: CI
+            spec: {}
+    - stage:
+        name: Fetch Json File
+        identifier: Fetch_Json_File
+        description: ""
+        type: Custom
+        spec:
+          execution:
+            steps:
+              - step:
+                  type: ShellScript
+                  name: ShellScript_1
+                  identifier: ShellScript_1
+                  spec:
+                    shell: Bash
+                    onDelegate: true
+                    source:
+                      type: Inline
+                      spec:
+                        script: |
+                          #!/bin/bash
+
+                          # Install jq if necessary
+                          if ! command -v jq &> /dev/null; then
+                            sudo apt-get install jq -y
+                          fi
+
+                          # Read the JSON file content
+                          fileContent=$(cat https://github.com/shivakumar123441/task-repo/blob/main/json.file)
+
+                          # Check the value of "a" and update if necessary
+                          if [[ $(echo "$fileContent" | jq -r '.a') != "1" ]]; then
+                            fileContent=$(echo "$fileContent" | jq '.a = "1"')
+                          fi
+
+                          # Check the presence of "b" and add if necessary
+                          if [[ $(echo "$fileContent" | jq -r 'has("b")') == "false" ]]; then
+                            fileContent=$(echo "$fileContent" | jq '.b = "1"')
+                          fi
+
+                          # Write the modified content back to the JSON file
+                          echo "$fileContent" > https://github.com/shivakumar123441/task-repo/blob/main/json.file
+                    environmentVariables: []
+                    outputVariables: []
+                  timeout: 10m
+        tags: {}
+    - stage:
+        name: Push
+        identifier: Push
+        description: ""
+        type: Custom
+        spec:
+          execution:
+            steps:
+              - step:
+                  type: ShellScript
+                  name: ShellScript_1
+                  identifier: ShellScript_1
+                  spec:
+                    shell: Bash
+                    onDelegate: true
+                    source:
+                      type: Inline
+                      spec:
+                        script: |
+                          #!/bin/bash
+
+                          # Configure Git user
+                          git config --global user.name "Shiva Kumar"
+                          git config --global user.email "shivakumar123441@gmail.com"
+
+                          # Stage the modified JSON file
+                          git add https://github.com/shivakumar123441/task-repo/blob/main/json.file
+
+                          # Commit the changes
+                          git commit -m "Update JSON file"
+
+                          # Push the changes back to the repository
+                          git push
+                    environmentVariables: []
+                    outputVariables: []
+                  timeout: 10m
+        tags: {}
