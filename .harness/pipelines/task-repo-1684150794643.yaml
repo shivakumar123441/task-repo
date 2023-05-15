@@ -17,8 +17,8 @@ pipeline:
                   name: GitClone_1
                   identifier: GitClone_1
                   spec:
-                    connectorRef: account.Github_OAuth_1678082073279
-                    repoName: shivakumar123441/task-repo
+                    connectorRef: shivaSCM
+                    repoName: task-repo
                     build:
                       type: branch
                       spec:
