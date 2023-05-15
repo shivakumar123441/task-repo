@@ -57,7 +57,7 @@ pipeline:
 
                       # Stage the modified JSON file
                       cd shivakumar123441/task-repo/
-                      git credential-manager clear
+                      git credential reject
                       git config --global user.name "shivakumar123441"
                       git config --global user.email "shivakumar123441@gmail.com"
                       git add .
