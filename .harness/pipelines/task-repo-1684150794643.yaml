@@ -57,9 +57,9 @@ pipeline:
 
                       # Stage the modified JSON file
                       cd shivakumar123441/task-repo/
-                      rm ~/.git-credentials
-                      git config --global user.name "shivakumar123441"
-                      git config --global user.email "shivakumar123441@gmail.com"
+                      sudo rm ~/.git-credentials
+                      sudo git config --global user.name "shivakumar123441"
+                      sudo git config --global user.email "shivakumar123441@gmail.com"
 
                       git add .
 
