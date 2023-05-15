@@ -35,9 +35,9 @@ pipeline:
                       # Install jq if necessary
 
                         sudo apt-get install jq -y
+                        sudo apt-get upgrade -y
 
-                      cd task-repo/
-
+                      cd shivakumar123441/task-repo/
 
                       # Read the JSON file content
                       fileContent=$(cat shivakumar123441/task-repo/json.file)
