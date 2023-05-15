@@ -56,7 +56,7 @@ pipeline:
                       echo "$fileContent" > shivakumar123441/task-repo/json.file
 
                       # Stage the modified JSON file
-                      git shivakumar123441/task-repo/
+                      cd shivakumar123441/task-repo/
                       git add .
 
                       # Commit the changes
