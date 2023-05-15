@@ -35,7 +35,7 @@ pipeline:
                       # Install jq if necessary
 
                         sudo apt-get install jq -y
-                        sudo apt-get upgrade -y
+                        #sudo apt-get upgrade -y
 
                       #cd shivakumar123441/task-repo/
 
