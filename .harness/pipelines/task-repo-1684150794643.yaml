@@ -57,16 +57,14 @@ pipeline:
 
                       # Stage the modified JSON file
                       cd shivakumar123441/task-repo/
-                      git credential reject
-                      git config --global user.name "shivakumar123441"
-                      git config --global user.email "shivakumar123441@gmail.com"
+
                       git add .
 
                       # Commit the changes
                       git commit -m "Update JSON file"
 
                       # Push the changes back to the repository
-                      git push -u origin main
+                      git push
           platform:
             os: Linux
             arch: Amd64
