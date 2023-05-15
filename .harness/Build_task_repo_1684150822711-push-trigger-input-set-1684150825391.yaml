@@ -1,0 +1,14 @@
+inputSet:
+  name: Build_task_repo_1684150822711-push-trigger-input-set
+  identifier: Build_task_repo_1684150822711pushtriggerinputset
+  orgIdentifier: default
+  projectIdentifier: githubtask
+  pipeline:
+    identifier: Build_task_repo_1684150822711
+    properties:
+      ci:
+        codebase:
+          build:
+            type: branch
+            spec:
+              branch: <+trigger.branch>
