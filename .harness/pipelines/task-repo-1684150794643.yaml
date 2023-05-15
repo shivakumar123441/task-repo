@@ -52,18 +52,6 @@ pipeline:
 
                       # Write the modified content back to the JSON file
                       echo "$fileContent" > shivakumar123441/task-repo/json.file
-              - step:
-                  type: Run
-                  name: Run_2
-                  identifier: Run_2
-                  spec:
-                    shell: Bash
-                    command: |
-                      #!/bin/bash
-
-                      # Configure Git user
-                      git config --global user.name "shiva kumar"
-                      git config --global user.email "shivakumar123441@gmail.com"
 
                       # Stage the modified JSON file
                       git add .
