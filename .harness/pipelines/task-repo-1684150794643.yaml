@@ -33,12 +33,12 @@ pipeline:
                       #!/bin/bash
 
                       # Install jq if necessary
-                      if ! command -v jq &> /dev/null; then
+
                         sudo apt-get install jq -y
-                      fi
+
 
                       # Read the JSON file content
-                      fileContent=$(cat https://github.com/shivakumar123441/task-repo/blob/main/json.file)
+                      fileContent=$(cat shivakumar123441/task-repo/json.file)
 
                       # Check the value of "a" and update if necessary
                       if [[ $(echo "$fileContent" | jq -r '.a') != "1" ]]; then
@@ -51,7 +51,7 @@ pipeline:
                       fi
 
                       # Write the modified content back to the JSON file
-                      echo "$fileContent" > https://github.com/shivakumar123441/task-repo/blob/main/json.file
+                      echo "$fileContent" > shivakumar123441/task-repo/json.file
               - step:
                   type: Run
                   name: Run_2
@@ -66,7 +66,7 @@ pipeline:
                       git config --global user.email "shivakumar123441@gmail.com"
 
                       # Stage the modified JSON file
-                      git add https://github.com/shivakumar123441/task-repo/blob/main/json.file
+                      git add shivakumar123441/task-repo/json.file
 
                       # Commit the changes
                       git commit -m "Update JSON file"
