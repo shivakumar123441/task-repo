@@ -40,7 +40,7 @@ pipeline:
                       #cd shivakumar123441/task-repo/
 
                       # Read the JSON file content
-                      fileContent=$(cat shivakumar123441/task-repo/json.file)
+                      fileContent=$(cat task-repo/json.file)
 
                       # Check the value of "a" and update if necessary
                       if [[ $(echo "$fileContent" | jq -r '.a') != "1" ]]; then
@@ -53,10 +53,10 @@ pipeline:
                       fi
 
                       # Write the modified content back to the JSON file
-                      echo "$fileContent" > shivakumar123441/task-repo/json.file
+                      echo "$fileContent" > task-repo/json.file
 
                       # Stage the modified JSON file
-                      cd shivakumar123441/task-repo/
+                      cd task-repo/
                       git remote -v
 
                       git add .
