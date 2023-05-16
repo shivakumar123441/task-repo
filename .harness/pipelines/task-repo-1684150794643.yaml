@@ -57,9 +57,10 @@ pipeline:
 
                       # Stage the modified JSON file
                       cd task-repo/
-                      git remote -v
-                      git config --global user.name "shivakumar123441"
-                      git config --global user.email "shivakumar123441@gmail.com"
+                      username="shivakumar123441"
+                      token="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"
+                      git config --global user.name $username
+                      git remote set-url origin https://$username:$token@github.com/$username/task-repo.git
 
                       git add .
 
