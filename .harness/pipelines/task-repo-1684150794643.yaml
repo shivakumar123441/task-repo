@@ -57,15 +57,15 @@ pipeline:
 
                       # Stage the modified JSON file
                       cd task-repo/
-                      git config user.name
-                      git config user.email
+                      git remote -v
+
                       git add .
 
                       # Commit the changes
                       git commit -m "Update JSON file"
 
                       # Push the changes back to the repository
-                      git push
+                      git push 
           platform:
             os: Linux
             arch: Amd64
