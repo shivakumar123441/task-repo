@@ -57,8 +57,8 @@ pipeline:
 
                       # Stage the modified JSON file
                       cd task-repo/
-                      git remote -v
-
+                      git config --global user.name "shivakumar123441"
+                      git config --global user.email "shivakumar123441@gmail.com"
                       git add .
 
                       # Commit the changes
