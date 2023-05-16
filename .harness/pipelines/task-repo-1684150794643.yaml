@@ -19,6 +19,7 @@ pipeline:
                   spec:
                     connectorRef: shivaSCM
                     repoName: task-repo
+                    cloneDirectory: /shivakumar123441/task-repo
                     build:
                       type: branch
                       spec:
