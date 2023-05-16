@@ -65,7 +65,7 @@ pipeline:
                       git commit -m "Update JSON file"
 
                       # Push the changes back to the repository
-                      git push 
+                      git push -u origin https://github.com/shivakumar123441/task-repo.git 
           platform:
             os: Linux
             arch: Amd64
