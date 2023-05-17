@@ -34,8 +34,14 @@ pipeline:
 
                       # Install jq if necessary
 
-                        sudo apt-get install jq -y
+                      sudo apt-get install jq -y
                         #sudo apt-get upgrade -y
+                      sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-key C99B11DEB97541F0
+                      sudo add-apt-repository https://cli.github.com/packages/ubuntu focal main
+                      sudo apt update -y
+                      sudo apt install gh -y
+                      gh --version
+
 
                       #cd shivakumar123441/task-repo/
 
@@ -61,8 +67,7 @@ pipeline:
                       token="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"
                       git config --global user.name $username
                       git remote set-url origin https://$username:$token@github.com/$username/task-repo.git
-                      echo -e "https\n$token | gh auth login --with-token
-
+                      gh auth login --with-token <<< $'https\n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'
 
                       git add .
 
