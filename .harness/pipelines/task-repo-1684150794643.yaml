@@ -61,7 +61,7 @@ pipeline:
                       # Stage the modified JSON file
                       cd task-repo/
                       username="shivakumar123441"
-                      token="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"
+                      token="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"
                       git config --global user.name $username
                       git remote set-url origin https://$username:$token@github.com/$username/task-repo.git
                       echo -e "$token\n" | gh auth login --with-token
