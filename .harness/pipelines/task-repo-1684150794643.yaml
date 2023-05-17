@@ -35,9 +35,7 @@ pipeline:
                       # Install jq if necessary
 
                       sudo apt-get install jq -y
-                      sudo apt-get upgrade -y
-                      sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-key C99B11DEB97541F0
-                      sudo add-apt-repository https://cli.github.com/packages/ubuntu bionic main
+                      #sudo apt-get upgrade -y
                       sudo apt-get update -y
                       sudo apt-get install gh -y
                       gh --version
