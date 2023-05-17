@@ -65,14 +65,14 @@ pipeline:
                       git config --global user.email "shivakumar123441@gmail.com"
                       git config --global --list
                       echo -e "<+pipeline.stages.Build.variables.task123>\n" | gh auth login --with-token
-                      git remote set-url origin git@github.com:shivakumar123441/task-repo.git
+                      git remote set-url origin https://github.com/shivakumar123441/task-repo.git
                       git add json.file
 
                       # Commit the changes
                       git commit -m "Update JSON file"
 
                       # Push the changes back to the repository
-                      git push
+                      git push origin main
           platform:
             os: Linux
             arch: Amd64
