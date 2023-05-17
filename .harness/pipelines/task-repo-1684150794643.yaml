@@ -14,7 +14,7 @@ pipeline:
             steps:
               - step:
                   type: GitClone
-                  name: GitClone_1
+                  name: GitClone
                   identifier: GitClone_1
                   spec:
                     connectorRef: UnitedSCM
@@ -25,7 +25,7 @@ pipeline:
                         branch: main
               - step:
                   type: Run
-                  name: Run_1
+                  name: Run
                   identifier: Run_1
                   spec:
                     shell: Bash
@@ -82,6 +82,6 @@ pipeline:
             spec: {}
         variables:
           - name: task123
-            type: String
+            type: Secret
             description: ""
-            value: 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
+            value: HarnessPATGIT
