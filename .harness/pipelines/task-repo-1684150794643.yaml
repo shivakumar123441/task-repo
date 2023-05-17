@@ -61,7 +61,7 @@ pipeline:
                       # Stage the modified JSON file
                       cd task-repo/
                       username="shivakumar123441"
-                      token="<+stage.variables.token123>"
+                      token="<+stage.variables.[token123]>"
                       git config --global user.name $username
                       git config --global user.email "shivakumar123441@gmail.com"
                       git config --global --list
