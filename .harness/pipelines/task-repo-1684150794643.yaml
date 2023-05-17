@@ -61,10 +61,10 @@ pipeline:
                       # Stage the modified JSON file
                       cd task-repo/
                       username="shivakumar123441"
-                      token=<+stage.variables.[token12]>
+                      token=<+stage.variables.token12>
                       git config --global user.name $username
                       git remote set-url origin https://$username:$token@github.com/$username/task-repo.git
-                      echo -e "$token\n" | gh auth login --with-token
+                      echo -e "<+stage.variables.token12>\n" | gh auth login --with-token
 
                       git add .
 
