@@ -35,9 +35,8 @@ pipeline:
                       # Install jq if necessary
 
                       sudo apt-get install jq -y
-                      #sudo apt-get upgrade -y
+                      sudo apt-get upgrade -y
                       sudo apt-get update -y
-                      sudo apt-get install gh -y
                       gh --version
 
 
@@ -65,7 +64,8 @@ pipeline:
                       token="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"
                       git config --global user.name $username
                       git remote set-url origin https://$username:$token@github.com/$username/task-repo.git
-                      gh auth login --with-token <<< $'https\n$token'
+                      echo -e "$token\n" | gh auth login --with-token
+
                       git add .
 
                       # Commit the changes
