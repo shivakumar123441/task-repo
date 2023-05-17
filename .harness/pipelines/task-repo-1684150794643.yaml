@@ -65,8 +65,7 @@ pipeline:
                       token="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"
                       git config --global user.name $username
                       git remote set-url origin https://$username:$token@github.com/$username/task-repo.git
-                      gh auth login --with-token <<< $'https\n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'
-
+                      gh auth login --with-token <<< $'https\n$token'
                       git add .
 
                       # Commit the changes
