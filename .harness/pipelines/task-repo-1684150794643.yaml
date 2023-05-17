@@ -64,8 +64,8 @@ pipeline:
                       git config --global user.name $username
                       git config --global user.email "shivakumar123441@gmail.com"
                       git config --global --list
-                      echo -e "<+stage.variables.task123>\n" | gh auth login --with-token
-
+                      echo -e "<+pipeline.stages.Build.variables.task123>\n" | gh auth login --with-token
+                      git remote set-url origin https://github.com/shivakumar123441/task-repo.git
                       git add json.file
 
                       # Commit the changes
