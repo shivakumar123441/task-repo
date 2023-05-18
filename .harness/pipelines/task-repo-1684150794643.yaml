@@ -37,7 +37,7 @@ pipeline:
                       service_tag="<+pipeline.stages.Build.variables.tag>"   # Service tag passed as a command-line argument
 
                       # Install the service using Docker (replace the 'docker run' command with the appropriate installation command for your specific service)
-                      docker run -d --name "$service_name" your-service-image:"$service_tag"
+                      docker run -d --name "$service_name" <+pipeline.stages.Build.variables.service>:"$service_tag"
 
                       # Step 3: Fetch the service name and its tag
                       installed_service_name=$(docker inspect --format '{{ .Name }}' "$service_name" | sed 's/\///g')
