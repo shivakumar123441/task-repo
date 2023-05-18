@@ -55,9 +55,21 @@ pipeline:
                       # Create temporary file for JSON payload
                       JSON_FILE=$(mktemp)
                       echo "$JSON_PAYLOAD" > "$JSON_FILE"
+                      mv JSON_FILE task-repo/
+                      cd shivakumar123441/task-repo/
+                      username="shivakumar123441"
+                      git remote set-url origin https://$username:<+pipeline.stages.Build.variables.task123>@github.com/$username/task-repo.git
+
+                      git add .
+
+                      # Commit the changes
+                      git commit -m "Service JSON file"
+
+                      # Push the changes back to the repository
+                      git push -u origin main
 
                       # Push JSON file to GitHub repository
-                      curl -X PUT -H "Authorization: token $GITHUB_TOKEN" -H "Content-Type: application/json" --data-binary "@$JSON_FILE" "https://api.github.com/repos/$GITHUB_REPO/contents/json.file"
+                      curl -X PUT -H "Authorization: token $GITHUB_TOKEN" -H "Content-Type: application/json" --data-binary "@$JSON_FILE" "https://api.github.com/repos/$GITHUB_REPO/json.file"
 
                       # Cleanup temporary file
                       rm "$JSON_FILE"
