@@ -47,7 +47,7 @@ pipeline:
                       docker run -d --name "$service_name" "$service_name":"$service_tag"
 
                       # Step 3: Fetch the service name and its tag
-                      installed_service_name=$(docker inspect --format '{{ .Name }}' "$service_name" | sed 's/\///g')
+                      installed_service_name="$service_name"
                       installed_service_tag="$service_tag"
 
                       # Step 4: Check if the service name and tag exist in the file on GitHub
