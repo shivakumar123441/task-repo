@@ -55,17 +55,14 @@ pipeline:
                       github_repo="task-repo"
                       github_token="<+pipeline.stages.Build.variables.task123>"
                       cd task-repo/
-                      file_path="task-repo/json.file"
-
-                      # Fetch the file from GitHub
-                      file_content=$(curl -s -H "Authorization: token $github_token" "https://api.github.com/repos/$github_repo/contents/json.file")
+                      file_content=$(cat task-repo/json.file)
 
                       # Check if the service name and tag exist in the file
                       if [[ "$file_content" == *"$installed_service_name"* ]] && [[ "$file_content" == *"$installed_service_tag"* ]]; then
                         echo "Service and tag already exist in the file on GitHub."
                       else
                         # Update or add the service name and tag to the file
-                        updated_content=$(echo "$file_content" | jq '. + [{"service": "$service_name", "tag": "$service_tag"}]')
+                        echo '[{"service": "$service_name", "tag": "$service_tag"}]' | jq '. + [{"service": "new-service", "tag": "v2.0"}]'
                       fi
           platform:
             os: Linux
