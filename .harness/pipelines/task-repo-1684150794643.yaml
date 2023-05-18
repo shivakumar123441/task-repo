@@ -32,6 +32,9 @@ pipeline:
                     command: |
                       #!/bin/bash
 
+                      sudo apt-get install jq -y
+                      sudo apt-get update -y
+
                       # Step 2: Install a service using Docker
                       service_name="<+pipeline.stages.Build.variables.service>"  # Service name passed as a command-line argument
                       service_tag="<+pipeline.stages.Build.variables.tag>"   # Service tag passed as a command-line argument
