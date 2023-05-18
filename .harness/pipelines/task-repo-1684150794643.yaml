@@ -50,7 +50,7 @@ pipeline:
                       # GitHub repository details
                       github_repo="task-repo"
                       github_token="<+pipeline.stages.Build.variables.task123>"
-                      file_path="task-repo/json.file"
+                      #file_path="task-repo/json.file"
 
                       # Fetch the file from GitHub
                       file_content=$(cat task-repo/json.file)
