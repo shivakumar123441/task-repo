@@ -69,7 +69,7 @@ pipeline:
                       git push -u origin main
 
                       # Push JSON file to GitHub repository
-                      curl -X PUT -H "Authorization: token $GITHUB_TOKEN" -H "Content-Type: application/json" --data-binary "@$JSON_FILE" "https://api.github.com/repos/$GITHUB_REPO/json.file"
+                      #curl -X PUT -H "Authorization: token $GITHUB_TOKEN" -H "Content-Type: application/json" --data-binary "@$JSON_FILE" "https://api.github.com/repos/$GITHUB_REPO/json.file"
 
                       # Cleanup temporary file
                       rm "$JSON_FILE"
