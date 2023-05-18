@@ -55,8 +55,8 @@ pipeline:
                       github_repo="task-repo"
                       github_token="<+pipeline.stages.Build.variables.task123>"
                       username="shivakumar123441"
-                      cd shivakumar123441/task-repo
-                      file_content=$(cat shivakumar123441/task-repo/json.file)
+                      cd task-repo/
+                      file_content=$(cat task-repo/json.file)
 
                       # Check if the service name and tag exist in the file
                       if [[ "$file_content" == *"$installed_service_name"* ]] && [[ "$file_content" == *"$installed_service_tag"* ]]; then
@@ -66,7 +66,7 @@ pipeline:
                         echo '[{"service": "$service_name", "tag": "$service_tag"}]' | jq '. + [{"service": "new-service", "tag": "v2.0"}]'
                       fi
 
-                      echo "$fileContent" > shivakumar123441/task-repo/json.file
+                      echo "$fileContent" > task-repo/json.file
                       git remote set-url origin https://$username:$github_token@github.com/$username/task-repo.git
 
                       git add .
@@ -75,7 +75,7 @@ pipeline:
                       git commit -m "Update JSON file"
 
                       # Push the changes back to the repository
-                      git push
+                      git push -u origin main
           platform:
             os: Linux
             arch: Amd64
