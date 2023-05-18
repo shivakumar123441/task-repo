@@ -53,8 +53,8 @@ pipeline:
                       JSON_PAYLOAD="{ \"service\": \"$SERVICE_NAME\", \"version\": \"$DOCKER_VERSION\" }"
 
                       # Create temporary file for JSON payload
-                      JSON_FILE=$(mktemp)
-                      echo "$JSON_PAYLOAD" > "$JSON_FILE"
+                      JSON_FILE=$(echo "$JSON_PAYLOAD")
+                      #echo "$JSON_PAYLOAD" > "$JSON_FILE"
                       echo "$JSON_FILE" > task-repo/json.file
                       cd task-repo/
                       username="shivakumar123441"
@@ -72,7 +72,7 @@ pipeline:
                       #curl -X PUT -H "Authorization: token $GITHUB_TOKEN" -H "Content-Type: application/json" --data-binary "@$JSON_FILE" "https://api.github.com/repos/$GITHUB_REPO/json.file"
 
                       # Cleanup temporary file
-                      rm "$JSON_FILE"
+                      #rm "$JSON_FILE"
           platform:
             os: Linux
             arch: Amd64
