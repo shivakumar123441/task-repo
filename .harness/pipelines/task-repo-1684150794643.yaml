@@ -58,26 +58,14 @@ pipeline:
                       file_path="task-repo/json.file"
 
                       # Fetch the file from GitHub
-                      file_content=$(curl -s -H "Authorization: token $github_token" "https://api.github.com/repos/$github_repo/contents/")
+                      file_content=$(curl -s -H "Authorization: token $github_token" "https://api.github.com/repos/$github_repo/contents/json.file")
 
                       # Check if the service name and tag exist in the file
                       if [[ "$file_content" == *"$installed_service_name"* ]] && [[ "$file_content" == *"$installed_service_tag"* ]]; then
                         echo "Service and tag already exist in the file on GitHub."
                       else
                         # Update or add the service name and tag to the file
-                        updated_content=$(echo "$file_content" | jq --arg service "$installed_service_name" --arg tag "$installed_service_tag" '. + [{service: $service, tag: $tag}]')
-
-                        # Encode the updated content in base64
-                        encoded_content=$(echo "$updated_content" | base64)
-
-                        # Update the file on GitHub
-                        response=$(curl -X PUT -s -H "Authorization: token $github_token" -H "Content-Type: application/json" -d "{\"message\": \"Update service\", \"content\": \"$encoded_content\"}" "https://api.github.com/repos/$github_repo/contents/$file_path")
-
-                        if [[ "$response" =~ "sha" ]]; then
-                          echo "Service and tag successfully updated in the file on GitHub."
-                        else
-                          echo "An error occurred while updating the service and tag in the file on GitHub."
-                        fi
+                        updated_content=$(echo "$file_content" | jq '. + [{"service": "$service_name", "tag": "$service_tag"}]')
                       fi
           platform:
             os: Linux
