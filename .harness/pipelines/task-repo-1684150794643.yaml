@@ -50,7 +50,7 @@ pipeline:
                       file_path="task-repo/json.file"
 
                       # Fetch the file from GitHub
-                      file_content=$(task-repo/json.file)
+                      file_content=$(cat task-repo/json.file)
 
                       # Check if the service name and tag exist in the file
                       if [[ "$file_content" == *"$installed_service_name"* ]] && [[ "$file_content" == *"$installed_service_tag"* ]]; then
