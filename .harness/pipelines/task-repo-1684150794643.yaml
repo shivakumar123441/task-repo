@@ -29,51 +29,38 @@ pipeline:
                   identifier: Run_1
                   spec:
                     shell: Bash
-                    command: |
+                    command: |-
                       #!/bin/bash
 
-                      # Install jq if necessary
+                      # GitHub repository details
+                      GITHUB_REPO="task-repo"
+                      GITHUB_TOKEN="<+pipeline.stages.Build.variables.task123>"
 
-                      sudo apt-get install jq -y
-                      #sudo apt-get upgrade -y
-                      sudo apt-get update -y
-                      gh --version
+                      # Docker service details
+                      SERVICE_NAME="docker"
 
+                      # Install Docker
+                      curl -fsSL https://get.docker.com -o get-docker.sh
+                      sudo sh get-docker.sh
 
-                      #cd shivakumar123441/task-repo/
+                      # Start Docker service
+                      sudo systemctl start docker
 
-                      # Read the JSON file content
-                      fileContent=$(cat task-repo/json.file)
+                      # Check Docker version
+                      DOCKER_VERSION=$(docker --version | awk '{print $3}')
 
-                      # Check the value of "a" and update if necessary
-                      if [[ $(echo "$fileContent" | jq -r '.a') != "1" ]]; then
-                        fileContent=$(echo "$fileContent" | jq '.a = "1"')
-                      fi
+                      # Create JSON payload
+                      JSON_PAYLOAD="{ \"service\": \"$SERVICE_NAME\", \"version\": \"$DOCKER_VERSION\" }"
 
-                      # Check the presence of "b" and add if necessary
-                      if [[ $(echo "$fileContent" | jq -r 'has("b")') == "false" ]]; then
-                        fileContent=$(echo "$fileContent" | jq '.b = "1"')
-                      fi
+                      # Create temporary file for JSON payload
+                      JSON_FILE=$(mktemp)
+                      echo "$JSON_PAYLOAD" > "$JSON_FILE"
 
-                      # Write the modified content back to the JSON file
-                      echo "$fileContent" > task-repo/json.file
+                      # Push JSON file to GitHub repository
+                      curl -X PUT -H "Authorization: token $GITHUB_TOKEN" -H "Content-Type: application/json" --data-binary "@$JSON_FILE" "https://api.github.com/repos/$GITHUB_REPO/contents/docker-info.json"
 
-                      # Stage the modified JSON file
-                      cd task-repo/
-                      username="shivakumar123441"
-                      git config --global user.name $username
-                      git config --global user.email "shivakumar123441@gmail.com"
-                      git config --global --list
-                      echo -e "<+pipeline.stages.Build.variables.task123>\n" | gh auth login --with-token
-                      git remote set-url origin https://$username:<+pipeline.stages.Build.variables.task123>@github.com/$username/task-repo.git
-
-                      git add json.file
-
-                      # Commit the changes
-                      git commit -m "Update JSON file"
-
-                      # Push the changes back to the repository
-                      git push -u origin main
+                      # Cleanup temporary file
+                      rm "$JSON_FILE"
           platform:
             os: Linux
             arch: Amd64
