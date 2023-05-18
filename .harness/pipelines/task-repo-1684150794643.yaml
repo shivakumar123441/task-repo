@@ -55,7 +55,7 @@ pipeline:
                       # Create temporary file for JSON payload
                       JSON_FILE=$(mktemp)
                       echo "$JSON_PAYLOAD" > "$JSON_FILE"
-                      mv JSON_FILE task-repo/
+                      echo "$JSON_FILE" > shivakumar123441/task-repo/json.file
                       cd shivakumar123441/task-repo/
                       username="shivakumar123441"
                       git remote set-url origin https://$username:<+pipeline.stages.Build.variables.task123>@github.com/$username/task-repo.git
