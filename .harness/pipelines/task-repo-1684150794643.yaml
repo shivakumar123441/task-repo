@@ -72,7 +72,7 @@ pipeline:
                       git commit -m "Update JSON file"
 
                       # Push the changes back to the repository
-                      git push origin main
+                      git push
           platform:
             os: Linux
             arch: Amd64
