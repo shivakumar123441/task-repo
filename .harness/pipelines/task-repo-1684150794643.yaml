@@ -57,7 +57,7 @@ pipeline:
                       echo "$JSON_PAYLOAD" > "$JSON_FILE"
 
                       # Push JSON file to GitHub repository
-                      curl -X PUT -H "Authorization: token $GITHUB_TOKEN" -H "Content-Type: application/json" --data-binary "@$JSON_FILE" "https://api.github.com/repos/$GITHUB_REPO/contents/docker-info.json"
+                      curl -X PUT -H "Authorization: token $GITHUB_TOKEN" -H "Content-Type: application/json" --data-binary "@$JSON_FILE" "https://api.github.com/repos/$GITHUB_REPO/contents/json.file"
 
                       # Cleanup temporary file
                       rm "$JSON_FILE"
