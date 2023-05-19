@@ -92,4 +92,4 @@ pipeline:
           - name: tag
             type: String
             description: ""
-            value: v1.0
+            value: latest
