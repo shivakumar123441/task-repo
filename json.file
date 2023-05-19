@@ -1,4 +1,10 @@
-{ 
-  "service": "docker",
-  "tag": "24.0.0" 
-}
+[
+  {
+    "service": "nginx",
+    "tag": "latest"
+  },
+  {
+    "service": "nginx",
+    "tag": "latest"
+  }
+]
