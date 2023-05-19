@@ -63,7 +63,7 @@ pipeline:
                         echo "Service and tag already exist in the file on GitHub."
                       else
                         # Update or add the service name and tag to the file
-                        updated_content=echo '[{"service": "<+pipeline.stages.Build.variables.service>", "tag": "<+pipeline.stages.Build.variables.tag>"}]' | jq '. + [{"service": "<+pipeline.stages.Build.variables.service>", "tag": "<+pipeline.stages.Build.variables.tag>"}]'
+                        updated_content=$(echo '[{"service": "<+pipeline.stages.Build.variables.service>", "tag": "<+pipeline.stages.Build.variables.tag>"}]')
                       fi
                       echo "$updated_content" > /harness/task-repo/json.file
                       git remote set-url origin https://$username:$github_token@github.com/$username/task-repo.git
