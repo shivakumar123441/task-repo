@@ -88,7 +88,7 @@ pipeline:
           - name: service
             type: String
             description: ""
-            value: tomcat
+            value: nginx
           - name: tag
             type: String
             description: ""
