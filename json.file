@@ -1,5 +1,8 @@
-{ 
-   "service4": "1.0.1", 
    "service2": "1.0.1", 
+   "service4": "1.0.1", 
    "service6": "1.0.6" 
+"service1": "1.0.1",
+"service2": "1.0.2",
+"service3": "1.0.3",
+{ 
 }
