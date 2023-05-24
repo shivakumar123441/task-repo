@@ -1,5 +1,1 @@
-{
-  "service2":"1.0.1",
-  "service4":"1.0.1",
-  "service6":"1.0.6"
-}
+{"errorMessages":"[\n  \"You do not have permission to view attachment with id: 10000\"\n]","errors":"{}","service2":"1.0.1","service4":"1.0.1","service6":"1.0.6"}
